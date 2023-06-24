@@ -1,0 +1,25 @@
+name: SosigUtils
+version: '0.1-SNAPSHOT'
+main: de.sosig.sosigutils.SosigUtils
+api-version: '1.20'
+commands:
+  home:
+    description: Teleportiere dich zu einem Home.
+  sethome:
+    description: Setze ein Home.
+  delhome:
+    description: Lösche ein gesetztes Home.
+  dupe:
+    description: Dupliziert ein Item / einen Itemstack.
+  setrank:
+    description: Setze den Rang eines Spielers.
+  test:
+    description: Test Command.
+  timer:
+      description: Timer command.
+  tpa:
+    description: Sendet eine tpa Anfrage.
+  tpaccept:
+    description: Nimmt eine tpa Anfrage an.
+  challenge:
+    description: Alles um die aktuelle Challenge.
