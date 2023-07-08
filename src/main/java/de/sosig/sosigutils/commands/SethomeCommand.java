@@ -9,7 +9,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import sun.security.krb5.internal.CredentialsUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,6 +31,5 @@ public class SethomeCommand implements CommandExecutor{
             throw new RuntimeException(e);
         }
         return true;
-        //cfg.set(p.getUniqueId().toString(), location);
     }
 }

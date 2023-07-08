@@ -23,6 +23,8 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class JoinEvent implements Listener {
+    File rankFile = new File("plugins/SosigUtil", "ranks.yml");
+    FileConfiguration rankCfg = YamlConfiguration.loadConfiguration(rankFile);
 
     public JoinEvent() throws IOException {
     }
@@ -32,14 +34,18 @@ public class JoinEvent implements Listener {
     public void onJoin(PlayerJoinEvent e){
         e.setJoinMessage("§7[§e§l+§7] §e" + e.getPlayer().getName());
         Player player = e.getPlayer();
+        SosigUtils main = SosigUtils.getMain();
 
-        player.setPlayerListHeader("\n          §d§lTwitch.tv/sosig808          \n");
+        player.setPlayerListHeaderFooter("\n          §d§lTwitch.tv/sosig808          \n", "\n        §dping §7| §f" + player.spigot().getPing() + "ms        \n");
         player.setScoreboard(SosigUtils.getMain().sb);
 
         //Bukkit.broadcastMessage(player.getName());
 
         if(!player.hasPlayedBefore()) {
-            SosigUtils.getMain().t_player.addEntry(player.getName());
+            player.setDisplayName(main.playerRankTabPrefix + player.getName());
+            player.setPlayerListName(main.playerRankTabPrefix + player.getName());
+            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "lp user " + player.getName() + " group set default");
+            //SosigUtils.getMain().t_player.addEntry(player.getName());
         }
 
         //if (player.getName().equals("NoticeTheSosig")){
@@ -52,19 +58,22 @@ public class JoinEvent implements Listener {
         //NametagManager.setNametag(player);
         //NametagManager.newTag(player);
 
-        if (player.getName() == "NoticeTheSosig"){
-            player.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
-            Team team = player.getScoreboard().registerNewTeam("twitch");
-            //team.setPrefix(rank.getPrefix() + ChatColor.WHITE + " | ");
-            team.setPrefix("§d§lTwitch §7| §f");
+        main.updateRanks();
 
-            for (Player target : Bukkit.getOnlinePlayers()){
-                if (player.getUniqueId() != target.getUniqueId()){
-                    player.getScoreboard().getTeam("§d§lTwitch §7| §f").addEntry((target.getName()));
-                }
-            }
 
-        }
+        //if (player.getName() == "NoticeTheSosig"){
+        //    player.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
+        //    Team team = player.getScoreboard().registerNewTeam("twitch");
+        //    //team.setPrefix(rank.getPrefix() + ChatColor.WHITE + " | ");
+        //    team.setPrefix("§d§lTwitch §7| §f");
+//
+        //    for (Player target : Bukkit.getOnlinePlayers()){
+        //        if (player.getUniqueId() != target.getUniqueId()){
+        //            player.getScoreboard().getTeam("§d§lTwitch §7| §f").addEntry((target.getName()));
+        //        }
+        //    }
+//
+        //}
 
         //Timer timer = TimerCommand.timers.get(e.getPlayer().getUniqueId());
 

@@ -52,6 +52,7 @@ public class TimerCommand implements CommandExecutor {
                 }
 
                 timer.stop();
+                timers.remove(player.getUniqueId());
                 player.sendMessage("§dTimer wurde gestoppt");
                 return true;
             }else {

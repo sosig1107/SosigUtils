@@ -32,6 +32,7 @@ public class setrankTabCompletion_2 implements TabCompleter {
             //args.add("moderator");
             args.add("mod");
             args.add("twitch");
+            args.add("boss");
             //args.add("youtube");
             //args.add("vip");
             args.add("player");

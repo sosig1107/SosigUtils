@@ -37,6 +37,10 @@ public class HomeCommand implements CommandExecutor {
             p.sendMessage("§cEs ist ein fehler aufgetreten (vermutlich existiert die Datei homes.yml nicht und ich bin zu faul das zu coden :)");
             throw new RuntimeException(e);
         }
+        if (strings.length == 0 && cfg.contains(p.getName() + " - " + p.getUniqueId() + "." + "home")){
+            p.teleport(Objects.requireNonNull(cfg.getLocation(p.getName() + " - " + p.getUniqueId() + "." + "home")));
+            p.sendMessage(SosigUtils.prefix + "§eDu wurdest zu deinem home §c" + "home" + "§e teleportiert.");
+        }
         if (strings.length == 1){
             if (cfg.contains(p.getName() + " - " + p.getUniqueId() + "." + strings[0])){
                 p.teleport(Objects.requireNonNull(cfg.getLocation(p.getName() + " - " + p.getUniqueId() + "." + strings[0])));
